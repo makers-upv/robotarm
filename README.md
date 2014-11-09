@@ -1,4 +1,4 @@
-# Robotarm
+# Robot Arm
 
 A simple Arduino robotic arm. It has 3 [Degrees of Freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_%28mechanics%29), which allows anyone to controll it with a simple Joystick. They are:
 
