@@ -3,7 +3,7 @@
  * @author Francisco Presencia Fandos
  */
 
-// Needed libraries
+// Libraries
 #include <Servo.h>
 
 // Arm variables
@@ -20,7 +20,7 @@ int wristPin = 11;
 int wristPos;
 int wristOpenPos = 150;
 
-// Joystick variables
+// Controller variables
 int pinX = 1;
 int pinY = 0;
 int valueX = 0;
