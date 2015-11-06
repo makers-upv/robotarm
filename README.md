@@ -2,14 +2,47 @@
 
 A simple Arduino robotic arm. It has 3 [Degrees of Freedom](https://en.wikipedia.org/wiki/Degrees_of_freedom_%28mechanics%29), which allows anyone to controll it with a simple Joystick. They are:
 
-- Shoulder: vertical rotational axis which is controlled by the horizontal joystick
-- Elbow: horizontal rotational axis which allows it to reach farther places. Controlled with the vertical joystick.
-- Wrist: open/close, which is controlled by the joystick click.
+- Shoulder: horizontal rotational axis that moves the whole arm
+- Elbow: horizontal rotational axis that moves half of the arm
+- Wrist: open/close action
+
+
+## Getting started
+
+Clone the repository with [git]() or download it:
+
+```bash
+git clone git@github.com:makers-upv/robotarm.git
+```
+
+Inside the newly created folder, you have to access `robotarm.ino` and modify the variables inside `setup()`:
+
+```c
+// The pin for each of the arm's servo
+int shoulder = 6;
+int elbow = 9;
+int wrist = 19;
+
+// Init script for the whole program
+void setup() {
+  
+  // Initialize the controller that we want to use
+  int controller = ctrl.joystick.init();
+  
+  // Define the controller as a joystick
+  ctrl.init(controller);
+  
+  // Pin and initial position in degrees
+  arm.init(shoulder, 90);
+  arm.init(elbow, 90);
+  arm.init(wrist, 90);
+}
+```
 
 
 ## Author
 
-[Francisco Presencia Fandos](https://github.com/FranciscoP) as a [Makers UPV](http://makersupv.com/) project.
+[Francisco Presencia Fandos](https://github.com/FranciscoP) and German Torres Royo as a [Makers UPV](http://makersupv.com/) project.
 
 
 ## License
