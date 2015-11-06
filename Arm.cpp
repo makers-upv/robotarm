@@ -9,7 +9,6 @@ Arm::Arm(){
   delta = 3;
 }
 
-
 // Attach the corresponding servo and move it to the desired position
 void Arm::init(int pin, int pos){
   servo[pin].attach(pin);
@@ -19,7 +18,7 @@ void Arm::init(int pin, int pos){
 // Move the servo to the required position
 void Arm::move(int pin, int goal){
   int prev = this->read(pin);
-  int next = prev + this->diff(prev, goal);
+  int next = this->next(prev, goal);
   servo[pin].write(next);
 }
 
@@ -33,18 +32,18 @@ int Arm::read(int pin){
 //   @param prev the old value of the servo
 //   @param next the value where we want to get
 //   @return int the ammount that we need to move (bounded)
-int Arm::diff(int prev, int next){
+int Arm::next(int prev, int next){
     
   // Increasing the position if we don't overflow
-  if (next > prev && prev + delta < 160) {
-  	return delta;
+  if (next > prev) {
+  	return min(prev + delta, 160);
   	}
   
   // Decreasing the position if we don't underflow
-  else if (next < prev && prev - delta > 20) {
-  	return -delta;
+  else if (next < prev) {
+  	return max(prev - delta, 20);
   	}
   
   // No change expected
-  return 0;
+  return prev;
 }

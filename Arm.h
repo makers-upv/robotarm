@@ -10,10 +10,10 @@ class Arm
 {
   public:
     
-    Arm();
-    
     // Ammount of degrees that it moves on each cycle
     int delta;
+    
+    Arm();
     
     // Initialize a servo and move it to the init position
     void init(int pin, int pos);
@@ -21,7 +21,7 @@ class Arm
     // Move a servo to the required position
     void move(int pin, int pos);
     
-    // Move a servo to the required position
+    // Get the current position of an arm
     int read(int pin);
   
   private:
@@ -30,7 +30,8 @@ class Arm
     // that an Arduino can have. It's okay if there's "empty" servos
     Servo servo[20];
     
-    int diff(int prev, int next);
+    // Get the next value from the current one
+    int next(int prev, int next);
     
 };
 
