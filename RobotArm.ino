@@ -8,25 +8,25 @@
 
 // Arm variables
 Servo shoulder;
-int shoulderPin = 9;
+int shoulderPin = 6;
 int shoulderPos = 90;
 
 Servo elbow;
-int elbowPin = 10;
+int elbowPin = 9;
 int elbowPos = 90;
 
 Servo wrist;
-int wristPin = 11;
+int wristPin = 10;
 int wristPos;
 int wristOpenPos = 150;
 
 // Controller variables
-int pinX = 1;
-int pinY = 0;
+int pinX = 0;
+int pinY = 2;
 int valueX = 0;
 int valueY = 0;
 int push = 0;
-int pushPin = 4;
+int pushPin = 12;
 
 // Speed variables. Note: they are inversely proportional
 int pause = 30;
@@ -87,6 +87,7 @@ void loop() {
   	else
   	  openClaw();
   	}
+   while(isPressed()); //Debouncing of the input
 
   wrist.write(wristPos);
   }

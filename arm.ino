@@ -51,15 +51,6 @@ void Arm::up(int distance, boolean relative) {
 
   }
 
-// Private method
-void Arm::upDiff();
-
-//void Arm::upDiff();
-//void Arm::y();
-void Arm::up(int distance);
-void Arm::up(int distance, boolean relative);
-void Arm::upDiff(int distance);
-
 
 
 
