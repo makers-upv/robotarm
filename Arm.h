@@ -10,14 +10,19 @@ class Arm
 {
   public:
     
+    Arm();
+    
     // Ammount of degrees that it moves on each cycle
-    int delta = 3;
+    int delta;
     
     // Initialize a servo and move it to the init position
     void init(int pin, int pos);
     
     // Move a servo to the required position
     void move(int pin, int pos);
+    
+    // Move a servo to the required position
+    int read(int pin);
   
   private:
     

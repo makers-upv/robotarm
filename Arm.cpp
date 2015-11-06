@@ -5,6 +5,11 @@
 #include "Arm.h"
 
 
+Arm::Arm(){
+  delta = 3;
+}
+
+
 // Attach the corresponding servo and move it to the desired position
 void Arm::init(int pin, int pos){
   servo[pin].attach(pin);
@@ -13,9 +18,14 @@ void Arm::init(int pin, int pos){
 
 // Move the servo to the required position
 void Arm::move(int pin, int goal){
-  int prev = servo[pin].read();
+  int prev = this->read(pin);
   int next = prev + this->diff(prev, goal);
   servo[pin].write(next);
+}
+
+// Move the servo to the required position
+int Arm::read(int pin){
+  return servo[pin].read();
 }
 
 

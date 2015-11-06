@@ -11,14 +11,14 @@
 // ...
 
 
-// Define the arm
+// Define the object to handle the arm
 Arm arm;
 
-// Define the controller. Can be of several types
+// Define the type of the controller
 Joystick ctrl;
-// Accelerometer ctrl;   // Controlling it with an accelerometer
-// Internet ctrl;        // Controlling it through the internet
-// ...
+// Accelerometer ctrl;
+// Internet ctrl;
+// others...
 
 
 // The pin for each of the arm's servos
@@ -33,10 +33,10 @@ void setup() {
   // Initialize the controller
   ctrl.init();
   
-  // Pin and initial position in degrees
+  // Initialize the parts of the arm
   arm.init(shoulder, 90);
   arm.init(elbow, 90);
-  arm.init(wrist, 90);
+  arm.init(wrist, 120);
 }
 
 
@@ -45,44 +45,5 @@ void loop() {
   
   arm.move(shoulder, ctrl.read(ctrl.shoulder));
   arm.move(elbow, ctrl.read(ctrl.elbow));
-  arm.move(wrist, ctrl.read(ctrl.wrist));
-  
-  // Serial.println(isPressed());
-  // // Get the click action and perform the action
-  // if (isPressed()) {
-  // 	if(wristPos == wristOpenPos)
-  // 	  closeClaw();
-  // 	else
-  // 	  openClaw();
-  // 	}
-  //  while(isPressed()); //Debouncing of the input
-  // 
-  // wrist.write(wristPos);
+  arm.move(wrist, ctrl.toggle(ctrl.wrist, arm.read(wrist)));
 }
-
-
-// /**
-//  * Check whether the pin is pressed or not
-//  */
-// boolean isPressed() {
-//   return !digitalRead(pushPin);
-//   }
-// 
-// /** 
-//  * Close the claw by moving the wrist servo
-//  */
-// void closeClaw() {
-//   wristPos = 90;
-//   wrist.write(wristPos);
-//   delay(100);
-//   }
-// 
-// /**
-//  * Close the claw by moving the wrist servo
-//  */
-// void openClaw () {
-//   wristPos = wristOpenPos;
-//   wrist.write(wristPos);
-//   delay(100);
-//   }
-

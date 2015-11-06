@@ -15,28 +15,21 @@ Clone the repository with [git]() or download it:
 git clone git@github.com:makers-upv/robotarm.git
 ```
 
-Inside the newly created folder, you have to access `robotarm.ino` and modify the variables inside `setup()`:
+Inside the newly created folder, you have to access `robotarm.ino`. Modify the controller method and the pins for the servos:
 
 ```c
+// ...
+
+// Define the type of the controller
+Joystick ctrl;
+// Accelerometer ctrl;
+// Internet ctrl;
+// others...
+
 // The pin for each of the arm's servo
 int shoulder = 6;
 int elbow = 9;
 int wrist = 19;
-
-// Init script for the whole program
-void setup() {
-  
-  // Initialize the controller that we want to use
-  int controller = ctrl.joystick.init();
-  
-  // Define the controller as a joystick
-  ctrl.init(controller);
-  
-  // Pin and initial position in degrees
-  arm.init(shoulder, 90);
-  arm.init(elbow, 90);
-  arm.init(wrist, 90);
-}
 ```
 
 
