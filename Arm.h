@@ -10,8 +10,8 @@ class Arm
 {
   public:
     
-    // Constructor
-    Arm();
+    // Ammount of degrees that it moves on each cycle
+    int delta = 3;
     
     // Initialize a servo and move it to the init position
     void init(int pin, int pos);
@@ -25,7 +25,7 @@ class Arm
     // that an Arduino can have. It's okay if there's "empty" servos
     Servo servo[20];
     
-    int delta(int prev, int next);
+    int diff(int prev, int next);
     
 };
 

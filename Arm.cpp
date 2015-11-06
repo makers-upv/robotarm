@@ -4,9 +4,6 @@
 #include "Arduino.h"
 #include "Arm.h"
 
-// Initialize the arm
-Arm::Arm() {
-}
 
 // Attach the corresponding servo and move it to the desired position
 void Arm::init(int pin, int pos){
@@ -15,24 +12,27 @@ void Arm::init(int pin, int pos){
 }
 
 // Move the servo to the required position
-void Arm::move(int pin, int pos){
-  int cur = servo[pin].read();
-  cur = this->delta(cur, pos);
-  servo[pin].write(cur);
+void Arm::move(int pin, int goal){
+  int prev = servo[pin].read();
+  int next = prev + this->diff(prev, goal);
+  servo[pin].write(next);
 }
 
-int Arm::delta(int prev, int next){
-  
-  int ang = 3;
-  
-  // If we are increasing and the new position won't overflow
-  if (next > 100 && prev < 160) {
-  	return ang;
+
+// Receives the position where we want to go and return the delta to move
+//   @param prev the old value of the servo
+//   @param next the value where we want to get
+//   @return int the ammount that we need to move (bounded)
+int Arm::diff(int prev, int next){
+    
+  // Increasing the position if we don't overflow
+  if (next > prev && prev + delta < 160) {
+  	return delta;
   	}
   
-  // If we are decreasing and the new pos won't be below 0
-  else if (next < 80 && prev > 20) {
-  	return -ang;
+  // Decreasing the position if we don't underflow
+  else if (next < prev && prev - delta > 20) {
+  	return -delta;
   	}
   
   // No change expected
