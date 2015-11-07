@@ -15,8 +15,11 @@
 // Define the object to handle the arm
 Arm arm;
 
-// Initialize the controller
-Controller ctrl;
+// Initialize the type of controller that we want
+Joystick ctrl;
+// Accelerometer ctrl;
+// Internet ctrl;
+// ...
 
 
 // The pin for each of the arm's servos

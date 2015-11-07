@@ -22,6 +22,12 @@ Inside the newly created folder, you have to access `robotarm.ino`. Modify the t
 
 // ...
 
+// Initialize the type of controller that we want
+Joystick ctrl;
+// Accelerometer ctrl;
+// Internet ctrl;
+// ...
+
 // The pin for each of the arm's servo
 int shoulder = 6;
 int elbow = 9;
@@ -32,9 +38,9 @@ Compile, upload and assemble the pieces. You are ready to go!
 
 
 
-## Contributing
+## Creating a Controller
 
-Thanks for writting a new Controller or improving the existing code. Controllers should extend `Controller.h` and they should implement at least `int read();`.
+Any Controller should extend `BaseController` (inside `Controller.h`) and they should implement `int read();`.
 
 If you want to add a servo to the arm, you'll have to implement a new function on each controller and add it to the pins. Say that we want to add `base` to rotate the base. Then we'd need to add this to `robotarm.ino`:
 
