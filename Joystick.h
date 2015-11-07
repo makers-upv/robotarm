@@ -4,11 +4,11 @@
 #include "Controller.h"
 
 // Handle the input from a Joystick and extend the controller's methods
-class Joystick : public Controller {
+class Controller : public BaseController {
   
   public:
     
-    Joystick();
+    Controller();
     
     // Read the data for some of the arm parts
     int read(int part);
@@ -29,7 +29,7 @@ class Joystick : public Controller {
 
 
 // Pins for each of the joystick controllers
-Joystick::Joystick(){
+Controller::Controller(){
   pins[this->shoulder] = 2;
   pins[this->elbow] = 3;
   pins[this->wrist] = 5;
@@ -37,7 +37,7 @@ Joystick::Joystick(){
 
 
 // Read a specified part of the controller
-int Joystick::read(int part){
+int Controller::read(int part){
   
   // You can check each part with this:
   //if (part == this->shoulder)
@@ -45,21 +45,23 @@ int Joystick::read(int part){
   return this->readPot(this->pins[part]);
 }
 
-int Joystick::toggle(int part, int prev){
+int Controller::toggle(int part, int prev){
   
   // Return the previous value if the button is not pressed
   if (!this->readButton(this->pins[this->wrist]))
     return prev;
   
+  while(this->readButton(this->pins[this->wrist]));
+  
   // If we reach here, the button was pressed. Invert the value
   return prev > 90 ? 20 : 160;
 }
 
-int Joystick::readPot(int pin){
+int Controller::readPot(int pin){
   return map(analogRead(pin), 0, 1024, 20, 160);
 }
 
-boolean Joystick::readButton(int pin){
+boolean Controller::readButton(int pin){
   if(digitalRead(pin))
     return 1;
   

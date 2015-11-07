@@ -5,6 +5,7 @@
 #include <Servo.h>
 #include "Arm.h"
 
+// Define the type of the controller
 #include "Joystick.h"
 // #include "Accelerometer.h"
 // #include "Internet.h"
@@ -14,24 +15,18 @@
 // Define the object to handle the arm
 Arm arm;
 
-// Define the type of the controller
-Joystick ctrl;
-// Accelerometer ctrl;
-// Internet ctrl;
-// others...
+// Initialize the controller
+Controller ctrl;
 
 
 // The pin for each of the arm's servos
 int shoulder = 6;
-int elbow = 9;
-int wrist = 19;
+int elbow = 8;
+int wrist = 9;
 
 
 // Init script for the whole arduino
 void setup() {
-  
-  // Initialize the controller
-  ctrl.init();
   
   // Initialize the parts of the arm
   arm.init(shoulder, 90);
@@ -46,4 +41,6 @@ void loop() {
   arm.move(shoulder, ctrl.read(ctrl.shoulder));
   arm.move(elbow, ctrl.read(ctrl.elbow));
   arm.move(wrist, ctrl.toggle(ctrl.wrist, arm.read(wrist)));
+  
+  delay(10);
 }

@@ -1,15 +1,15 @@
-// Controller header
+// Base Controller
 // Use this to extend and initialize other controllers
-#ifndef Controller_h
-#define Controller_h
+#ifndef BaseController_h
+#define BaseController_h
 
 #include "Arduino.h"
 
-class Controller {
+class BaseController {
   
   public:
     
-    Controller();
+    BaseController();
     
     // The parts that the arm has. They are different form the pin number since
     // it might not even be a pin or it might be a completely abstract function
@@ -26,13 +26,13 @@ class Controller {
     virtual int read(int part) = 0;
 };
 
-Controller::Controller(){
+BaseController::BaseController(){
   shoulder = 0;
   elbow = 1;
   wrist = 2;
 }
 
-int Controller::init(){
+int BaseController::init(){
   return 1;
 }
 
